@@ -6,10 +6,41 @@ import requests as re
 
 # driver = webdriver.Chrome()     # 打开 Chrome 浏览器
 
+'''
+先使用 requests 跟 Bs4 來 找尋 網址LIST 
+然後再放入 Selenium 內爬蟲
+並且自動投遞履歷
+未來方向 偵錯以及存入資料庫/比較工作總類
+'''
 a  = str(input('請搜尋想要找尋工作'))
 page = 1
 headers = {'user-agent': 'Mozilla/1.0 (Macintosh Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'}
-search=re.get(f"https://www.104.com.tw/jobs/search/?keyword={a}&order=1&jobsource=2019indexpoc&ro=0",headers)
+
+'''
+解析                                        
+order=?
+order=2 : 依據日期                          
+order=1 : 符合程度
+order=4 : 接案(104外包網)equal to order=7
+order=5 : 常駐國外
+order=6 : 外商公司(在台灣工作) 
+order=7 : equal to order=4
+order=8 : 必須有查詢關鍵字 ===完全符合
+order=9 : equal to order=8
+asc=13: 依據薪資高低
+____________________________________________________
+asc=?  還在解析中
+asc=1 : 預設值|
+asc=2 : 論件計酬|
+asc=3 : |
+asc=4 : |
+asc=5 : |
+asc=6 : |
+asc=7 : |
+asc=8 : |
+
+'''
+search=re.get(f"https://www.104.com.tw/jobs/search/?keyword={a}&order=2&jobsource=2019indexpoc&ro=0",headers)
 
 search.encoding = 'utf-8'
 soup = BeautifulSoup(search.text,'lxml')
