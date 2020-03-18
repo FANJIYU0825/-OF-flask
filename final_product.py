@@ -49,7 +49,7 @@ soup = BeautifulSoup(search.text,'lxml')
 jobap_links = soup.select('h2 > a')
 jlink_count = 0
 for jobap_link in jobap_links:
-    
+    print(jobap_link.text)
     apply_page = jobap_link.get('href')
     
     apply_pages = 'https:'+apply_page
@@ -70,7 +70,8 @@ for jobap_link in jobap_links:
         if current_window != window_1:
             driver.switch_to.window(current_window)
     
-    
+    username = 'J122795936'
+    passWord = 's2380215'
     driver.find_element_by_xpath(".//*[@id='username']").send_keys(username)
     
     driver.find_element_by_xpath(".//*[@id='password']").send_keys(passWord)
@@ -88,7 +89,7 @@ for jobap_link in jobap_links:
         driver.quit()
         continue
     except:
-        driver.find_element_by_xpath(".//*[@class='btn btn-sm btn-has-icon btn-secondary']").send_keys(Keys.ENTER)
+        driver.find_element_by_xpath(".//*[@class='btn btn-sm btn-has-icon apply-button__button btn-secondary']").send_keys(Keys.ENTER)
         time.sleep(3)
         pass
      
@@ -99,7 +100,7 @@ for jobap_link in jobap_links:
  
         try:
             
-            driver.find_element_by_xpath('//input[@id="resumeList0"]').click()
+            driver.find_element_by_xpath('//input[@id="resumeList1"]').click()
             
             end=time.clock()
             break
